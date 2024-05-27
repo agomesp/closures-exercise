@@ -427,15 +427,57 @@ function makeHistory(limit) {
 
 // CHALLENGE 19
 function blackjack(array) {
-	
+	function dealer(num1, num2) {
+    let countPlayerExec = 0;
+    let isBust = false;
+    let numSum = num1 + num2;
+    let currentArray = 0;
+    
+    function player() {
+      countPlayerExec ++;
+      
+      if(countPlayerExec === 1) {
+        return numSum;
+      }
+      
+      if(countPlayerExec === 2) {
+        if(numSum > 21) {
+          isBust = true;
+          return 'bust';
+        } else {
+          numSum += array[currentArray];
+          currentArray ++;
+          return numSum;
+        }
+      }
+      
+      if(isBust) {
+        return 'you are done!';
+      } else {
+        numSum += array[currentArray];
+        currentArray ++;
+        
+        if(numSum > 21) {
+          isBust = true;
+          return 'bust';
+        } else {
+          return numSum
+        }
+      }
+    }
+    
+    return player;
+  }
+  
+  return dealer;
 }
 
 // /*** Uncomment these to check your work! ***/
 
-// /*** DEALER ***/
+/*** DEALER ***/
 // const deal = blackjack([2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11]);
 
-// /*** PLAYER 1 ***/
+/*** PLAYER 1 ***/
 // const i_like_to_live_dangerously = deal(4, 5);
 // console.log(i_like_to_live_dangerously()); // => should log 9
 // console.log(i_like_to_live_dangerously()); // => should log 11
