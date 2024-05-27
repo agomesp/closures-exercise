@@ -390,10 +390,30 @@ function makeFuncTester(arrOfTests) {
 
 // CHALLENGE 18
 function makeHistory(limit) {
-
+	let history = [];
+  
+  function execution(str) {
+    if(str === "undo") {
+      if(history.length === 0) {
+        return "nothing to undo"
+      } else {
+        return `${history.pop()} undone`;
+      }
+    }
+    
+    if(history.length === limit) {
+      history.shift();
+    }
+    
+    history.push(str);
+    
+    return `${str} done`
+  }
+  
+  return execution;
 }
 
-// /*** Uncomment these to check your work! ***/
+// // /*** Uncomment these to check your work! ***/
 // const myActions = makeHistory(2);
 // console.log(myActions('jump')); // => should log 'jump done'
 // console.log(myActions('undo')); // => should log 'jump undone'
@@ -407,7 +427,7 @@ function makeHistory(limit) {
 
 // CHALLENGE 19
 function blackjack(array) {
-
+	
 }
 
 // /*** Uncomment these to check your work! ***/
